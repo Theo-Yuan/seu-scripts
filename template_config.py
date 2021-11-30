@@ -1,5 +1,5 @@
 # login #
-username = '*****'
+card_num = '*****'
 password = '*****'
 
 # main #

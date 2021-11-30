@@ -57,26 +57,14 @@ def get_lecture_info(w_id, ss):
 
 # 按间距中的绿色按钮以运行脚本。
 if __name__ == '__main__':
-    print("请输入帐号:")
-    # user_name = input()
-    user_name = config.username
-    print(user_name)
+    print("请输入一卡通号:")
+    card_num = config.card_num
+    print(card_num)
     print("请输入密码:")
-    # password = input()
     password = config.password
     print('*'*len(password))
     print("开始登陆")
-    s = login(user_name, password)
-    while s is False or s is None:
-        print("请重新登陆")
-        print("请输入帐号:")
-        user_name = input()
-        print("请输入密码:")
-        password = input()
-        print("开始登陆")
-        s = login(user_name, password)
-    print("登陆成功")
-    print("----------------讲座列表----------------")
+    s = login(card_num, password)
     lecture_list = get_lecture_list(s)
     for lecture in lecture_list:
         print("讲座wid：", end=" ")

@@ -1,6 +1,4 @@
 import ssl
-import http.cookiejar
-import urllib
 import pytesseract
 from PIL import Image
 
@@ -12,23 +10,17 @@ import urls
 def main():
     ssl._create_default_https_context = ssl._create_unverified_context
 
-    user_name = config.username
-    print(user_name)
+    card_num = config.card_num
+    print(card_num)
     print("请输入密码:")
     password = config.password
     print('*'*len(password))
     print("开始登陆")
-    s = login(user_name, password)
-    while s is False or s is None:
-        print("请重新登陆")
-        print("请输入帐号:")
-        user_name = input()
-        print("请输入密码:")
-        password = input()
-        print("开始登陆")
-        s = login(user_name, password)
+    s = login(card_num, password)
 
     res = s.get(urls.res_val_image, allow_redirects=True)
+    # print(res)
+    # return
     res = s.get(str(res.content).split(".href='")[-1].split("'</script>")[0])
     with open('validateimage.jpg', 'wb') as file:
         file.write(res.content)
