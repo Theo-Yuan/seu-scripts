@@ -17,3 +17,6 @@
 
 2. 场馆预约
     python reserve.py
+
+3. 每日健康申报
+    nohup python -m daily_post.py & > daily_post.log

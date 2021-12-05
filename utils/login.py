@@ -1,6 +1,6 @@
 import requests
 import json
-from ids_encrypt import encryptAES
+from utils.ids_encrypt import encryptAES
 from bs4 import BeautifulSoup
 
 import urls

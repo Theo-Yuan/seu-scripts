@@ -2,7 +2,7 @@ import js2py
 
 context = js2py.EvalJs()
 
-with open("./ids-encrypt.js") as f:
+with open("./utils/ids-encrypt.js") as f:
     js_content = f.read()
 
 
