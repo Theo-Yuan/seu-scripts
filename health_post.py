@@ -57,8 +57,10 @@ def do_report(session):
     try:
         if json.loads(res.text)['datas']['T_REPORT_EPIDEMIC_CHECKIN_SAVE'] == 1:
             print('填报成功！')
+            return True
         else:
             print('填报失败！')
+            return False
     except Exception:
         soup = BeautifulSoup(res.text, 'html.parser')
         tag = soup.select('.underscore.bh-mt-16')
@@ -67,6 +69,7 @@ def do_report(session):
         else:
             print(res.text)
         print('填报失败！')
+        return False
 
 
 # 获取昨日填报信息

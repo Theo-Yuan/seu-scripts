@@ -13,7 +13,7 @@ import config
 def login_report(user_config: Tuple):
     ss = login(user_config[0], user_config[1])
     if ss:
-        do_report(ss)
+        return do_report(ss)
 
 
 def do_job(try_num: int):
@@ -26,9 +26,6 @@ def do_job(try_num: int):
         while count < try_num and not login_report(user_config):
             count += 1
 
-        # if np.isnan(user_config['email']):
-        #     print('{} has no e-mail'.format(user_config['username']))
-        #     continue
         if count < try_num:
             send_email(**config.sender_cfg,
                        receivers=[user_config[2]],
@@ -55,6 +52,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
     print('Only do once' if args.once else 'Do it every day')
     if args.once:
-        daily_do_jobs(args.try_num)
-    else:
         do_job(args.try_num)
+    else:
+        daily_do_jobs(args.try_num)

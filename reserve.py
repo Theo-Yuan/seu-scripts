@@ -2,7 +2,7 @@ import ssl
 import pytesseract
 from PIL import Image
 
-from login import login
+from utils.login import login
 import config
 import urls
 
