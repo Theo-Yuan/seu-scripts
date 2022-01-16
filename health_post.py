@@ -78,13 +78,13 @@ def get_report_data(ss):
     ss.get('http://ehall.seu.edu.cn/appShow?appId=5821102911870447')
     latest_url = 'http://ehall.seu.edu.cn/qljfwapp2/sys/lwReportEpidemicSeu/modules/dailyReport/getLatestDailyReportData.do'
     wid_url = 'http://ehall.seu.edu.cn/qljfwapp2/sys/lwReportEpidemicSeu/mobile/dailyReport/getMyTodayReportWid.do'
-    userinfo_url = 'http://ehall.seu.edu.cn/qljfwapp2/sys/lwReportEpidemicSeu/api/base/getUserDetailDB.do'
+    # userinfo_url = 'http://ehall.seu.edu.cn/qljfwapp2/sys/lwReportEpidemicSeu/api/base/getUserDetailDB.do'
     last_res = ss.get(latest_url)
     wid_res = ss.get(wid_url)
-    userinfo_res = ss.post(userinfo_url)
+    # userinfo_res = ss.post(userinfo_url)
     try:
         tempFormData = {}
-        userInfo = json.loads(userinfo_res.text)['data']
+        # userInfo = json.loads(userinfo_res.text)['data']
         # 载入当天填报模板
         try:
             wid_data = json.loads(
@@ -104,17 +104,17 @@ def get_report_data(ss):
             raise
 
         # 载入用户信息
-        tempFormData['USER_ID'] = config.card_num
+        # tempFormData['USER_ID'] = config.card_num
         # tempFormData['PHONE_NUMBER'] = userInfo['PHONE_NUMBER']
-        tempFormData['IDCARD_NO'] = userInfo['IDENTITY_CREDENTIALS_NO']
-        tempFormData['GENDER_CODE'] = userInfo['GENDER_CODE']
+        # tempFormData['IDCARD_NO'] = userInfo['IDENTITY_CREDENTIALS_NO']
+        # tempFormData['GENDER_CODE'] = userInfo['GENDER_CODE']
 
         # tempFormData['CLASS_CODE'] = userInfo['CLASS_CODE']
         # tempFormData['CLASS'] = userInfo['CLASS']
-        tempFormData['RYSFLB'] = userInfo['RYSFLB']
-        tempFormData['USER_NAME'] = userInfo['USER_NAME']
-        tempFormData['DEPT_CODE'] = userInfo['DEPT_CODE']  # 学院编号
-        tempFormData['DEPT_NAME'] = userInfo['DEPT_NAME']
+        # tempFormData['RYSFLB'] = userInfo['RYSFLB']
+        # tempFormData['USER_NAME'] = userInfo['USER_NAME']
+        # tempFormData['DEPT_CODE'] = userInfo['DEPT_CODE']  # 学院编号
+        # tempFormData['DEPT_NAME'] = userInfo['DEPT_NAME']
     except Exception as e:
         print(e)
         print('【获取填报信息失败，请手动填报】')
